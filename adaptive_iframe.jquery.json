@@ -1,0 +1,28 @@
+{
+  "name": "adaptive_iframe",
+  "title": "Adaptive iFrame",
+  "description": "an attempt to implement the \"seamless\" iFrame functionalities",
+  "version": "0.1.0",
+  "homepage": "https://github.com/darcnite3000/adaptive_iframe",
+  "author": {
+    "name": "Tristan Smith",
+    "email": "darcnite3000@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/darcnite3000/adaptive_iframe.git"
+  },
+  "bugs": {
+    "url": "https://github.com/darcnite3000/adaptive_iframe/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/darcnite3000/adaptive_iframe/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": "*"
+  },
+  "keywords": []
+}
