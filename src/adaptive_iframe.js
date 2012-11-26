@@ -1,28 +1,31 @@
+
 /*
- * adaptive_iframe
- * https://github.com/darcnite3000/adaptive_iframe
- *
- * Copyright (c) 2012 Tristan Smith
- * Licensed under the MIT license.
- */
+adaptive_iframe
+https://github.com/darcnite3000/adaptive_iframe
 
-(function($) {
+Copyright (c) 2012 Tristan Smith
+Licensed under the MIT license.
+*/
 
-  // Collection method.
-  $.fn.awesome = function() {
-    return this.each(function() {
-      $(this).html('awesome');
+
+(function() {
+  var $;
+
+  $ = jQuery;
+
+  $.fn.aif_enable = function() {
+    this.filter('iframe').each(function() {
+      return $(this).addClass('aif-enabled');
     });
+    return this;
   };
 
-  // Static method.
-  $.awesome = function() {
-    return 'awesome';
+  $.aif_relatedCSS = function(element) {
+    return {
+      background: {
+        color: $(element).parent().css('background-color')
+      }
+    };
   };
 
-  // Custom selector.
-  $.expr[':'].awesome = function(elem) {
-    return elem.textContent.indexOf('awesome') >= 0;
-  };
-
-}(jQuery));
+}).call(this);

@@ -1,9 +1,5 @@
-/*global QUnit:false, module:false, test:false, asyncTest:false, expect:false*/
-/*global start:false, stop:false ok:false, equal:false, notEqual:false, deepEqual:false*/
-/*global notDeepEqual:false, strictEqual:false, notStrictEqual:false, raises:false*/
-(function($) {
 
-  /*
+/*
     ======== A Handy Little QUnit Reference ========
     http://docs.jquery.com/QUnit
 
@@ -20,38 +16,38 @@
       strictEqual(actual, expected, [message])
       notStrictEqual(actual, expected, [message])
       raises(block, [expected], [message])
-  */
+*/
 
-  module('jQuery#awesome', {
+
+(function() {
+  var $;
+
+  $ = jQuery;
+
+  module('jQuery#aif_enable', {
     setup: function() {
-      this.elems = $('#qunit-fixture').children();
+      return this.elems = $('#qunit-fixture .adaptable');
     }
   });
 
   test('is chainable', 1, function() {
-    // Not a bad test to run on collection methods.
-    strictEqual(this.elems.awesome(), this.elems, 'should be chaninable');
+    return strictEqual(this.elems.aif_enable(), this.elems, 'should be chainable');
   });
 
-  test('is awesome', 1, function() {
-    strictEqual(this.elems.awesome().text(), 'awesomeawesomeawesome', 'should be thoroughly awesome');
+  test('marks iframes only as adaptive', 1, function() {
+    this.elems.aif_enable();
+    return strictEqual($('iframe.aif-enabled').length, $('.aif-enabled').length, 'should only mark iframes');
   });
 
-  module('jQuery.awesome');
-
-  test('is awesome', 1, function() {
-    strictEqual($.awesome(), 'awesome', 'should be thoroughly awesome');
-  });
-
-  module(':awesome selector', {
+  module('jQuery.aif_relatedCSS', {
     setup: function() {
-      this.elems = $('#qunit-fixture').children();
+      this.cssTest = $('#css-test');
+      return this.cssTestAIF = $('#css-test iframe').aif_enable();
     }
   });
 
-  test('is awesome', 1, function() {
-    // Use deepEqual & .get() when comparing jQuery objects.
-    deepEqual(this.elems.filter(':awesome').get(), this.elems.last().get(), 'knows awesome when it sees it');
+  test('returns the relative background', 1, function() {
+    return strictEqual($.aif_relatedCSS(this.cssTestAIF).background.color, this.cssTest.css('background-color'), 'should return the background colour of the surounding element');
   });
 
-}(jQuery));
+}).call(this);
