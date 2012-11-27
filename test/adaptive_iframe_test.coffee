@@ -46,31 +46,35 @@ test 'marks iframes only as adaptive', 1, ->
 module 'jQuery.aif_relatedCSS'
   setup: ->
     @cssTest = $('#css-test')
+    @cssTestLink = $('#css-test a')
     @cssTestAIF = $('#css-test iframe').aif_enable()
 
-test 'returns the relative background', 1, ->
-  strictEqual $.aif_relatedCSS(@cssTestAIF).background.color,
+test 'returns the relative background-color', 1, ->
+  strictEqual $.aif_relatedCSS(@cssTestAIF).body.background.color,
               @cssTest.css('background-color'),
               'should return the background colour of the surounding element'
-# module 'jQuery#awesome',
-#   setup: ->
-#     @elems = $('#qunit-fixture').children()
-# 
-# test 'is chainable', 1, ->
-#   strictEqual this.elems.awesome(), this.elems, 'should be chaninable'
-# 
-# test 'is awesome', 1, ->
-#   strictEqual this.elems.awesome().text(), 'awesomeawesomeawesome', 'should be thoroughly awesome'
-# 
-# module 'jQuery.awesome'
-# 
-# test 'is awesome', 1, ->
-#   strictEqual $.awesome(), 'awesome', 'should be thoroughly awesome'
-# 
-# module ':awesome selector'
-#   setup: ->
-#     @elems = $('#qunit-fixture').children()
-# 
-# test 'is awesome', 1, ->
-#   # Use deepEqual & .get() when comparing jQuery objects.
-#   deepEqual this.elems.filter(':awesome').get(), this.elems.last().get(), 'knows awesome when it sees it'
+
+test 'returns the relative font-color', 1, ->
+  strictEqual $.aif_relatedCSS(@cssTestAIF).body.font.color,
+              @cssTest.css('color'),
+              'should return the font colour of the surounding element'
+
+test 'returns the relative font-family', 1, ->
+  strictEqual $.aif_relatedCSS(@cssTestAIF).body.font.family,
+              @cssTest.css('font-family'),
+              'should return the font-family of the surounding element'
+
+test 'returns the relative link background-color', 1, ->
+  strictEqual $.aif_relatedCSS(@cssTestAIF).link.background.color,
+              @cssTestLink.css('background-color'),
+              'should return the link background colour of the surounding element'
+
+test 'returns the relative link font-color', 1, ->
+  strictEqual $.aif_relatedCSS(@cssTestAIF).link.font.color,
+              @cssTestLink.css('color'),
+              'should return the link font colour of the surounding element'
+
+test 'returns the relative link font-family', 1, ->
+  strictEqual $.aif_relatedCSS(@cssTestAIF).link.font.family,
+              @cssTestLink.css('font-family'),
+              'should return the link font-family of the surounding element'

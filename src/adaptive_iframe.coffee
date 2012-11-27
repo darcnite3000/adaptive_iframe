@@ -13,6 +13,25 @@ $.fn.aif_enable = ->
     $(this).addClass('aif-enabled')
   this
 
-$.aif_relatedCSS = (element)->
+getBodyCSS = (element)->
   background:
-    color: $(element).parent().css('background-color')
+    color: element.css('background-color')
+  font:
+    color: element.css('color')
+    family: element.css('font-family')
+
+getLinkCSS = (element)->
+  test = $('<a>test</a>')
+  element.append(test)
+  css = test.css()
+  test.remove()
+  background:
+    color: null
+  font:
+    color: null
+    family: null
+
+$.aif_relatedCSS = (element)->
+  $parent = $(element).parent()
+  body: getBodyCSS($parent)
+  link: getLinkCSS($parent)

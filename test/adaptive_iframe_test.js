@@ -1,5 +1,20 @@
 
 /*
+global QUnit:false, module:false, test:false, asyncTest:false, expect:false
+*/
+
+
+/*
+global start:false, stop:false ok:false, equal:false, notEqual:false, deepEqual:false
+*/
+
+
+/*
+global notDeepEqual:false, strictEqual:false, notStrictEqual:false, raises:false
+*/
+
+
+/*
     ======== A Handy Little QUnit Reference ========
     http://docs.jquery.com/QUnit
 
@@ -42,12 +57,33 @@
   module('jQuery.aif_relatedCSS', {
     setup: function() {
       this.cssTest = $('#css-test');
+      this.cssTestLink = $('#css-test a');
       return this.cssTestAIF = $('#css-test iframe').aif_enable();
     }
   });
 
-  test('returns the relative background', 1, function() {
-    return strictEqual($.aif_relatedCSS(this.cssTestAIF).background.color, this.cssTest.css('background-color'), 'should return the background colour of the surounding element');
+  test('returns the relative background-color', 1, function() {
+    return strictEqual($.aif_relatedCSS(this.cssTestAIF).body.background.color, this.cssTest.css('background-color'), 'should return the background colour of the surounding element');
+  });
+
+  test('returns the relative font-color', 1, function() {
+    return strictEqual($.aif_relatedCSS(this.cssTestAIF).body.font.color, this.cssTest.css('color'), 'should return the font colour of the surounding element');
+  });
+
+  test('returns the relative font-family', 1, function() {
+    return strictEqual($.aif_relatedCSS(this.cssTestAIF).body.font.family, this.cssTest.css('font-family'), 'should return the font-family of the surounding element');
+  });
+
+  test('returns the relative link background-color', 1, function() {
+    return strictEqual($.aif_relatedCSS(this.cssTestAIF).link.background.color, this.cssTestLink.css('background-color'), 'should return the link background colour of the surounding element');
+  });
+
+  test('returns the relative link font-color', 1, function() {
+    return strictEqual($.aif_relatedCSS(this.cssTestAIF).link.font.color, this.cssTestLink.css('color'), 'should return the link font colour of the surounding element');
+  });
+
+  test('returns the relative link font-family', 1, function() {
+    return strictEqual($.aif_relatedCSS(this.cssTestAIF).link.font.family, this.cssTestLink.css('font-family'), 'should return the link font-family of the surounding element');
   });
 
 }).call(this);

@@ -9,7 +9,7 @@ Licensed under the MIT license.
 
 
 (function() {
-  var $;
+  var $, getBodyCSS, getLinkCSS;
 
   $ = jQuery;
 
@@ -20,11 +20,41 @@ Licensed under the MIT license.
     return this;
   };
 
-  $.aif_relatedCSS = function(element) {
+  getBodyCSS = function(element) {
     return {
       background: {
-        color: $(element).parent().css('background-color')
+        color: element.css('background-color')
+      },
+      font: {
+        color: element.css('color'),
+        family: element.css('font-family')
       }
+    };
+  };
+
+  getLinkCSS = function(element) {
+    var css, test;
+    test = $('<a>test</a>');
+    element.append(test);
+    css = test.css();
+    test.remove();
+    return {
+      background: {
+        color: null
+      },
+      font: {
+        color: null,
+        family: null
+      }
+    };
+  };
+
+  $.aif_relatedCSS = function(element) {
+    var $parent;
+    $parent = $(element).parent();
+    return {
+      body: getBodyCSS($parent),
+      link: getLinkCSS($parent)
     };
   };
 
